@@ -62,10 +62,7 @@ public class Main {
         if (completion) {
             new Generator().completion();
         }
-        for (int i = 100; i <= 10000; i += 100)
-            System.out.println(i);
-        System.out.println();
-        System.exit(0);
+
         // считывание
 
         for (int l = 100; l <= 10000; l+= 100) {
@@ -86,7 +83,13 @@ public class Main {
             if (n < 64) {
                 ArrayList<Integer> tempList = new ArrayList<>(Arrays.asList(a));
                 insertionsSort(tempList);
-                System.out.println(tempList.toString());
+                long algoTime = (System.nanoTime() - time) / 1000;
+                boolean check = true;
+                if (l == 100)
+                    check = false;
+                OutputStream outputStream = new FileOutputStream("data/OutputData.txt", check);
+                PrintStream printStream = new PrintStream(outputStream, false, StandardCharsets.UTF_8);
+                printStream.println(algoTime);
                 return;
             }
 
